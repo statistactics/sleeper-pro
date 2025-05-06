@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MyApp()); 
 }
 
 class MyApp extends StatelessWidget {
@@ -42,7 +42,7 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          Text('A random idea: testing flutter hot reload!'),
+          Text('A random idea: testing flutter hot reload feature!'),
           Text(appState.current.asSnakeCase),
                     // ↓ Add this.
           ElevatedButton(
