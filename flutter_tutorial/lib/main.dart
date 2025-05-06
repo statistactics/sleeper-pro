@@ -32,7 +32,20 @@ class MyAppState extends ChangeNotifier {
     current = WordPair.random();
     notifyListeners();
   }
+
+  var favourites = <WordPair>[];
+  void toggleFavourites(){
+    if (favourites.contains(current)) {
+      favourites.remove(current);
+
+    } else {
+      favourites.add(current);
+    }
+    notifyListeners();
+  }
 }
+
+
 
 class MyHomePage extends StatelessWidget {
   @override
@@ -41,19 +54,27 @@ class MyHomePage extends StatelessWidget {
     var textPair = appState.current;
 
     return Scaffold(
-      body: Column(
-        children: [
-          Text('A random idea: testing flutter hot reload feature!'),
-          BigCard(textPair: textPair),
-                    // ↓ Add this.
-          ElevatedButton(
-            onPressed: () {
-              print('button pressed!');
-              appState.getNext();
-            },
-            child: Text('Next'),
-          ),
-        ],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('A random idea: testing flutter hot reload feature!'),
+            BigCard(textPair: textPair),
+                      // ↓ Add this.
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    print('button pressed!');
+                    appState.getNext();
+                  },
+                  child: Text('Next'),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
       
     );
